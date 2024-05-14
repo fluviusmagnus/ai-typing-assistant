@@ -63,6 +63,8 @@ Return only the translated text in this form {LABEL1}text{LABEL2}, and don't inc
 LABEL1="<TEXT_BEGIN>"
 LABEL2="<TEXT_END>"
 
+print("Initializing...")
+
 load_dotenv()
 client = OpenAI(
   base_url=getenv("BASE_URL"),
@@ -154,6 +156,8 @@ register_hotkeys(bindings)
 
 # Finally, start listening for keypresses
 start_checking_hotkeys()
+
+print("Ready! You can hide this window now.")
 
 # Keep waiting until the user presses the exit_application keybinding.
 # Note that the hotkey listener will exit when the main thread does.
