@@ -1,5 +1,37 @@
 # AI powered typing assistant with Ollama
 
+## 全新制作 / New Creation
+
+(English version below)
+
+换用了一套更可靠的全局热键监听模组，`Ctrl+F9` 在我的 PC 上工作良好。
+
+改变了工作逻辑，不再模拟剪贴板操作。要处理的文本就是事先已经在剪贴板中复制好的，处理结束后也应手动粘贴。如此可以最大程度避免误操作。
+
+提供一个 PySimpleGUI 界面，供临时编辑需处理的文本。极具扩展性，使用下拉选单以决定处理方案，所有提示词在源码中可供增减或修改，改正、优化、翻译均可在一处完成。
+
+现在你需要：
+
+```
+pip install pyperclip httpx global-hotkeys pysimplegui
+```
+
+(English)
+
+A reliable global hotkey module was used, with `Ctrl+F9` working well on my PC.
+
+The working logic has been changed, no longer simulating clipboard operations. The text to be processed is the one that has been copied beforehand and placed in the clipboard, and after processing is completed, it should be manually pasted. This can avoid mistakes to the greatest extent.
+
+A PySimpleGUI interface is provided for temporary editing of the text to be processed. It is highly extensible, using drop-down menus to determine the processing scheme, with all prompts available for modification or addition in the source code. All corrections, optimizations, and translations can be completed in one place.
+
+Now you need:
+
+```
+pip install pyperclip httpx global-hotkeys pysimplegui
+```
+
+## 原作自述 / Original README
+
 A script that can run in the background and listen to hotkeys, then uses a Large Language Model to fix the text. Less than 100 lines of code.
 
 Inspired by this tweet:
@@ -12,9 +44,9 @@ You'll find a demo and step-by-step code explanations on my YouTube channel:
 
  [![Alt text](https://img.youtube.com/vi/IUTFrexghsQ/hqdefault.jpg)](https://youtu.be/IUTFrexghsQ)
 
-## Get Started
+### Get Started
 
-### 1. Set up Ollama
+#### 1. Set up Ollama
 
 Ollama Installation: https://github.com/ollama/ollama
 
@@ -22,7 +54,7 @@ Run `ollama run mistral:7b-instruct-v0.2-q4_K_S`
 
 Mistal 7B Instruct works well for this task, but feel free to try other models, too :)
 
-### 2. Install dependencies
+#### 2. Install dependencies
 ```
 pip install pynput pyperclip httpx
 ```
@@ -31,7 +63,7 @@ pip install pynput pyperclip httpx
 - pyperclip: https://github.com/asweigart/pyperclip
 - httpx: https://github.com/encode/httpx/
 
-### 3. Run it
+#### 3. Run it
 
 Start the assistant:
 
@@ -48,7 +80,7 @@ Hotkeys you can then press:
 
 **Note**: The code works on macOS. The underlying shortcuts in the code like Cmd+Shift+Left, Cmd+C, Cmd+V might have to be changed for Linux & Windows (e.g. `Key.cmd` -> `Key.ctrl`).
 
-## Customize
+### Customize
 
 Hotkeys, prompt, and Ollama config can be easily customized and extended in the code.
 
