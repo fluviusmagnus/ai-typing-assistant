@@ -1,7 +1,7 @@
 import time
 from openai import OpenAI
 from dotenv import load_dotenv
-from os import getenv
+import os, sys
 import pyperclip
 from global_hotkeys import *
 import PySimpleGUI as sg
@@ -65,10 +65,14 @@ LABEL2="<TEXT_END>"
 
 print("Initializing...")
 
-load_dotenv()
+extDataDir = os.getcwd()
+if getattr(sys, 'frozen', False):
+    extDataDir = sys._MEIPASS
+load_dotenv(dotenv_path=os.path.join(extDataDir, '.env'))
+
 client = OpenAI(
-  base_url=getenv("BASE_URL"),
-  api_key=getenv("API_KEY"),
+  base_url=os.getenv("BASE_URL"),
+  api_key=os.getenv("API_KEY"),
 )
 
 
