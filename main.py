@@ -80,7 +80,7 @@ def fix_text(action, text):
     prompt = TEMPLATES[action].format(text=text,LABEL1=LABEL1,LABEL2=LABEL2)
     # print(prompt)
     completion = client.chat.completions.create(
-      model=getenv("MODEL"),
+      model=os.getenv("MODEL"),
       messages=[
         {
           "role": "user",
