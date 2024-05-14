@@ -1,8 +1,10 @@
-# AI powered typing assistant with Ollama
+# AI powered typing assistant with OpenAI
 
 ## 全新制作 / New Creation
 
 (English version below)
+
+此分支使用了 OpanAI 的 API 方案，以供在线使用。请先设置好 `.env` 配置文件。
 
 换用了一套更可靠的全局热键监听模组，`Ctrl+F9` 在我的 PC 上工作良好。
 
@@ -13,10 +15,12 @@
 现在你需要：
 
 ```
-pip install pyperclip httpx global-hotkeys pysimplegui
+pip install pyperclip global-hotkeys pysimplegui opanai python-dotenv
 ```
 
 (English)
+
+This branch uses OpenAI's API for online use. Please set up the `.env` configuration file first.
 
 A reliable global hotkey module was used, with `Ctrl+F9` working well on my PC.
 
@@ -27,7 +31,7 @@ A PySimpleGUI interface is provided for temporary editing of the text to be proc
 Now you need:
 
 ```
-pip install pyperclip httpx global-hotkeys pysimplegui
+pip install pyperclip global-hotkeys pysimplegui openai python-dotenv
 ```
 
 ## 原作自述 / Original README

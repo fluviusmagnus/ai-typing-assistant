@@ -1,19 +1,10 @@
 import time
-
-import httpx
+from openai import OpenAI
+from dotenv import load_dotenv
+from os import getenv
 import pyperclip
-
 from global_hotkeys import *
-
 import PySimpleGUI as sg
-
-
-OLLAMA_ENDPOINT = "http://localhost:11434/api/generate"
-OLLAMA_CONFIG = {
-    "model": "llama3",
-    "keep_alive": "15m",
-    "stream": False,
-}
 
 TEMPLATES = {
 
@@ -72,20 +63,26 @@ Return only the translated text in this form {LABEL1}text{LABEL2}, and don't inc
 LABEL1="<TEXT_BEGIN>"
 LABEL2="<TEXT_END>"
 
+load_dotenv()
+client = OpenAI(
+  base_url=getenv("BASE_URL"),
+  api_key=getenv("API_KEY"),
+)
+
 
 def fix_text(action, text):
     prompt = TEMPLATES[action].format(text=text,LABEL1=LABEL1,LABEL2=LABEL2)
     # print(prompt)
-    response = httpx.post(
-        OLLAMA_ENDPOINT,
-        json={"prompt": prompt, **OLLAMA_CONFIG},
-        headers={"Content-Type": "application/json"},
-        timeout=60,
+    completion = client.chat.completions.create(
+      model=getenv("MODEL"),
+      messages=[
+        {
+          "role": "user",
+          "content": prompt,
+        },
+      ],
     )
-    if response.status_code != 200:
-        sg.popup("Error:", response.status_code)
-        return None
-    return response.json()["response"].strip()
+    return completion.choices[0].message.content.strip()
 
 
 def on_f9():
